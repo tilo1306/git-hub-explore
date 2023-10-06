@@ -31,14 +31,6 @@ interface CardProps {
 export function Card({ data, onPress }: CardProps) {
   const swipeableRef = useRef<Swipeable>(null);
 
-  const swipeableProps = {
-    ref: swipeableRef,
-    rightThreshold: 42,
-    overshootRight: false,
-    renderRightActions: () => <SwipeableDelete />,
-    onSwipeableRightOpen: handleDeleteAlert
-  }
-
   const { removeRepository } = useRepositories();
 
   function handleDeleteAlert() {
@@ -57,6 +49,7 @@ export function Card({ data, onPress }: CardProps) {
   }
 
   function CardContent() {
+
     return (
       <CardContainer
         hasImage={!!data.imageUrl}
@@ -89,7 +82,13 @@ export function Card({ data, onPress }: CardProps) {
   if (data.imageUrl) {
     return (
       <CardAnimation testID="repository-card">
-        <SwipeableContainer {...swipeableProps}>
+        <SwipeableContainer
+          ref={swipeableRef}
+          rightThreshold={42}
+          overshootRight={false}
+          renderRightActions={() => <SwipeableDelete />}
+          onSwipeableRightOpen={handleDeleteAlert}
+        >
           <CardContent />
         </SwipeableContainer>
       </CardAnimation>

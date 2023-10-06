@@ -1,6 +1,6 @@
-import { FlatList, FlatListProps } from 'react-native';
+import { FlatList } from 'react-native';
 import styled from 'styled-components/native';
-import { IssueProps } from '../../contexts/RepositoriesProvider';
+import { IssueProps } from '../../hooks/useRepositories';
 
 export const Container = styled.View`
   flex: 1;
@@ -87,7 +87,7 @@ export const OpenIssuesText = styled.Text`
 `;
 
 export const IssuesList = styled(
-  FlatList as new (props: FlatListProps<IssueProps>) => FlatList<IssueProps>
+  FlatList as new () => FlatList<IssueProps>
 )`
   margin-top: 50px;
 `;

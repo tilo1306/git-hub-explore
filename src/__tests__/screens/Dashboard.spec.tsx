@@ -16,7 +16,7 @@ jest.mock('@react-navigation/core', () => ({
 }));
 
 const axiosMock = new MockAdapter(api, {
-  delayResponse: 100
+  delayResponse: 1000
 });
 
 const reactRepositoryResponse = {
